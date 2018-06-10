@@ -8,7 +8,7 @@ public class AppConstants {
     //++++++++++++字符串常量++++++++++++
     public static final String BASE_URL = "";//访问服务器地址
     public static final String KUAI_KAN_URL = "http://api.kuaikanmanhua.com/";//快看访问服务器地址
-    public static final String ZHI_JIA_URL = "http://v2.api.dmzj.com/";//动漫之家访问服务器地址
+    public static final String ZHI_JIA_URL = "http://v2api.dmzj.com/";//动漫之家访问服务器地址
     public static final String MAN_MAN_URL = "";//漫漫访问服务器地址
     public static final String WANG_YI_URL = "https://api.mh.163.com/";//网易访问服务器地址
     //------------字符串常量------------
