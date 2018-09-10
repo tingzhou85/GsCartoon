@@ -4,14 +4,12 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.ColorRes;
+import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -22,7 +20,6 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -36,7 +33,6 @@ import com.gs.gscartoon.kuaikan.view.KuaiKanFragment;
 import com.gs.gscartoon.manman.model.ManManModel;
 import com.gs.gscartoon.manman.presenter.ManManPresenter;
 import com.gs.gscartoon.manman.view.ManManFragment;
-import com.gs.gscartoon.utils.ActivityUtil;
 import com.gs.gscartoon.utils.StatusBarUtil;
 import com.gs.gscartoon.utils.ToastUtil;
 import com.gs.gscartoon.utils.ToolbarUtil;
@@ -46,6 +42,7 @@ import com.gs.gscartoon.wangyi.view.WangYiFragment;
 import com.gs.gscartoon.zhijia.model.ZhiJiaModel;
 import com.gs.gscartoon.zhijia.presenter.ZhiJiaPresenter;
 import com.gs.gscartoon.zhijia.view.ZhiJiaFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -162,6 +159,18 @@ public class HomeActivity extends AppCompatActivity implements
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

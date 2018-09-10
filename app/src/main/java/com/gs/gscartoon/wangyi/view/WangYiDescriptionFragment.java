@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.gs.gscartoon.R;
 import com.gs.gscartoon.wangyi.WangYiDescriptionContract;
 import com.gs.gscartoon.wangyi.bean.WangYiDetailsBean;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,12 +70,14 @@ public class WangYiDescriptionFragment extends Fragment
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

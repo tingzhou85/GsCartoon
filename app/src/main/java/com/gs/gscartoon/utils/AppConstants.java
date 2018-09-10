@@ -6,6 +6,8 @@ package com.gs.gscartoon.utils;
 
 public class AppConstants {
     //++++++++++++字符串常量++++++++++++
+    public static final String UMENG_APPKEY = "5b962f8ba40fa3098f000127";//友盟统计Key
+    public static final String UMENG_CHANNEL = "umeng";//友盟统计渠道
     public static final String BASE_URL = "";//访问服务器地址
     public static final String KUAI_KAN_URL = "http://api.kuaikanmanhua.com/";//快看访问服务器地址
     public static final String ZHI_JIA_URL = "http://v2api.dmzj.com/";//动漫之家访问服务器地址

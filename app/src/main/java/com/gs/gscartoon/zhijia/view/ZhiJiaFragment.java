@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gs.gscartoon.R;
-import com.gs.gscartoon.manman.ManManContract;
 import com.gs.gscartoon.utils.AppConstants;
 import com.gs.gscartoon.utils.LogUtil;
 import com.gs.gscartoon.widget.view.refresh.JFengRefreshLayout;
@@ -25,6 +23,7 @@ import com.gs.gscartoon.widget.view.refresh.JFengRefreshListener;
 import com.gs.gscartoon.zhijia.ZhiJiaContract;
 import com.gs.gscartoon.zhijia.adapter.ZhiJiaListRecyclerAdapter;
 import com.gs.gscartoon.zhijia.bean.ZhiJiaListBean;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -127,12 +126,14 @@ public class ZhiJiaFragment extends Fragment implements ZhiJiaContract.View,
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

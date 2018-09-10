@@ -45,6 +45,7 @@ import com.gs.gscartoon.wangyi.view.WangYiDetailsActivity;
 import com.gs.gscartoon.zhijia.view.ZhiJiaBrowseActivity;
 import com.gs.gscartoon.zhijia.view.ZhiJiaDetailsActivity;
 import com.loopeer.itemtouchhelperextension.ItemTouchHelperExtension;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -250,7 +251,16 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
+        MobclickAgent.onResume(this);
         mPresenter.refreshData();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        MobclickAgent.onPause(this);
     }
 
     @Override

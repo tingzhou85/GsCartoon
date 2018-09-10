@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
 import com.gs.gscartoon.home.view.HomeActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import me.wangyuwei.particleview.ParticleView;
 
@@ -44,6 +45,20 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 1000);*/
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(TAG); //手动统计页面
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        MobclickAgent.onPause(this);
     }
 
     @Override

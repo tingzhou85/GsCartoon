@@ -2,13 +2,13 @@ package com.gs.gscartoon.zhijia.view;
 
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
@@ -30,6 +30,7 @@ import com.gs.gscartoon.zhijia.model.ZhiJiaDetailsModel;
 import com.gs.gscartoon.zhijia.presenter.ZhiJiaDescriptionPresenter;
 import com.gs.gscartoon.zhijia.presenter.ZhiJiaDetailsPresenter;
 import com.gs.gscartoon.zhijia.presenter.ZhiJiaSectionPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -249,6 +250,13 @@ public class ZhiJiaDetailsActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-
 import com.gs.gscartoon.R;
 import com.gs.gscartoon.kuaikan.KuaiKanBrowseContract;
 import com.gs.gscartoon.kuaikan.adapter.KuaiKanBrowseRecyclerAdapter;
@@ -19,6 +18,7 @@ import com.gs.gscartoon.kuaikan.presenter.KuaiKanBrowsePresenter;
 import com.gs.gscartoon.utils.AppConstants;
 import com.gs.gscartoon.utils.StatusBarUtil;
 import com.gs.gscartoon.utils.ToolbarUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -90,7 +90,16 @@ public class KuaiKanBrowseActivity extends AppCompatActivity implements KuaiKanB
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
+        MobclickAgent.onResume(this);
         mPresenter.refreshData(mChapterId);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        MobclickAgent.onPause(this);
     }
 
     @Override

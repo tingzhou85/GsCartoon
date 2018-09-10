@@ -1,8 +1,8 @@
 package com.gs.gscartoon.aboutme.view;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -12,6 +12,7 @@ import com.gs.gscartoon.R;
 import com.gs.gscartoon.utils.AppInforUtil;
 import com.gs.gscartoon.utils.StatusBarUtil;
 import com.gs.gscartoon.utils.ToolbarUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +48,20 @@ public class AboutMeActivity extends AppCompatActivity {
         sdvLauncher.setImageURI(Uri.parse("res://"+
                 this.getPackageName()+"/" + R.drawable.ic_launcher));
         tvVersion.setText("版本："+ AppInforUtil.getAppVersionName(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(TAG); //手动统计页面
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        MobclickAgent.onPause(this);
     }
 
     @Override

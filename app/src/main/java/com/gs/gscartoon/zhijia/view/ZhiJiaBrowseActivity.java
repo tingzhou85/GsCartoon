@@ -21,6 +21,7 @@ import com.gs.gscartoon.zhijia.ZhiJiaBrowseContract;
 import com.gs.gscartoon.zhijia.adapter.ZhiJiaBrowseRecyclerAdapter;
 import com.gs.gscartoon.zhijia.model.ZhiJiaBrowseModel;
 import com.gs.gscartoon.zhijia.presenter.ZhiJiaBrowsePresenter;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -103,7 +104,16 @@ public class ZhiJiaBrowseActivity extends AppCompatActivity implements ZhiJiaBro
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
+        MobclickAgent.onResume(this);
         mPresenter.refreshData(mComicId, mChapterId, mComicTitle, mCoverUrl);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        MobclickAgent.onPause(this);
     }
 
     @Override

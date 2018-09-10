@@ -22,6 +22,7 @@ import com.gs.gscartoon.wangyi.adapter.WangYiBrowseRecyclerAdapter;
 import com.gs.gscartoon.wangyi.bean.WangYiBrowseBean;
 import com.gs.gscartoon.wangyi.model.WangYiBrowseModel;
 import com.gs.gscartoon.wangyi.presenter.WangYiBrowsePresenter;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -104,7 +105,16 @@ public class WangYiBrowseActivity extends AppCompatActivity implements WangYiBro
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
+        MobclickAgent.onResume(this);
         mPresenter.refreshData(mComicId, mChapterId, mComicTitle, mCoverUrl);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        MobclickAgent.onPause(this);
     }
 
     @Override

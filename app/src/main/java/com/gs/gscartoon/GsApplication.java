@@ -5,11 +5,14 @@ import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.gs.gscartoon.utils.AppConstants;
 import com.gs.gscartoon.utils.FrescoUtil;
 import com.gs.gscartoon.utils.OkHttpUtil;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.picasso.Picasso;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 
 import io.realm.Realm;
 import okhttp3.OkHttpClient;
@@ -49,6 +52,12 @@ public class GsApplication extends Application {
             return;
         }
         LeakCanary.install(this);
+        //++++初始化友盟统计
+        UMConfigure.init(this, AppConstants.UMENG_APPKEY, AppConstants.UMENG_CHANNEL,
+                UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.setEncryptEnabled(true);//设置日志加密
+        MobclickAgent.openActivityDurationTrack(false);//禁止默认的页面统计功能
+        //----初始化友盟统计
     }
 
     public static Context getAppContext(){

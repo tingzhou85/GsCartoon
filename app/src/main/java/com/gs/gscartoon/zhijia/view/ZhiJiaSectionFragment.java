@@ -19,6 +19,7 @@ import com.gs.gscartoon.zhijia.ZhiJiaSectionContract;
 import com.gs.gscartoon.zhijia.adapter.ZhiJiaSectionRecyclerAdapter;
 import com.gs.gscartoon.zhijia.bean.ZhiJiaDetailsBean;
 import com.gs.gscartoon.zhijia.bean.ZhiJiaDetailsBean.ChaptersBean.DataBean;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -111,6 +112,7 @@ public class ZhiJiaSectionFragment extends Fragment
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         updateOrder();
         mPresenter.start();
     }
@@ -118,6 +120,7 @@ public class ZhiJiaSectionFragment extends Fragment
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

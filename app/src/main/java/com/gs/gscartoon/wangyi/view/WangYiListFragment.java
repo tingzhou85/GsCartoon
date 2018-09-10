@@ -1,7 +1,6 @@
 package com.gs.gscartoon.wangyi.view;
 
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -22,10 +21,10 @@ import com.gs.gscartoon.utils.LogUtil;
 import com.gs.gscartoon.utils.ToastUtil;
 import com.gs.gscartoon.wangyi.WangYiListContract;
 import com.gs.gscartoon.wangyi.adapter.WangYiListRecyclerAdapter;
+import com.gs.gscartoon.wangyi.bean.WangYiListBean.DataBean.BooksBean;
 import com.gs.gscartoon.widget.view.refresh.JFengRefreshLayout;
 import com.gs.gscartoon.widget.view.refresh.JFengRefreshListener;
-import com.gs.gscartoon.wangyi.bean.WangYiListBean.DataBean.BooksBean;
-import com.gs.gscartoon.zhijia.view.ZhiJiaDetailsActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -123,12 +122,14 @@ public class WangYiListFragment extends Fragment implements WangYiListContract.V
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

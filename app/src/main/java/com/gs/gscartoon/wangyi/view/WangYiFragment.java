@@ -22,6 +22,7 @@ import com.gs.gscartoon.wangyi.bean.WangYiCategoryBean;
 import com.gs.gscartoon.wangyi.bean.WangYiCategoryBean.DataBean.CategoryBean;
 import com.gs.gscartoon.wangyi.model.WangYiListModel;
 import com.gs.gscartoon.wangyi.presenter.WangYiListPresenter;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,12 +171,14 @@ public class WangYiFragment extends Fragment implements WangYiContract.View,
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

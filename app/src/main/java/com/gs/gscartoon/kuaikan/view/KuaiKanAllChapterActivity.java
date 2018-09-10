@@ -1,7 +1,6 @@
 package com.gs.gscartoon.kuaikan.view;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +27,7 @@ import com.gs.gscartoon.utils.StringUtil;
 import com.gs.gscartoon.utils.ToolbarUtil;
 import com.gs.gscartoon.widget.view.MarqueTextView;
 import com.squareup.picasso.Picasso;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -110,7 +110,16 @@ public class KuaiKanAllChapterActivity extends AppCompatActivity implements Kuai
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
+        MobclickAgent.onResume(this);
         mPresenter.refreshData(mComicId);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(TAG);
+        MobclickAgent.onPause(this);
     }
 
     @Override

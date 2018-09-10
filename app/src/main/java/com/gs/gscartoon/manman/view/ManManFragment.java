@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.gs.gscartoon.R;
 import com.gs.gscartoon.manman.ManManContract;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 
@@ -62,12 +63,14 @@ public class ManManFragment extends Fragment implements ManManContract.View{
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

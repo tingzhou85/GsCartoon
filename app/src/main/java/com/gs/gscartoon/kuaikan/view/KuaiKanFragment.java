@@ -17,6 +17,7 @@ import com.gs.gscartoon.kuaikan.KuaiKanContract;
 import com.gs.gscartoon.kuaikan.model.KuaiKanListModel;
 import com.gs.gscartoon.kuaikan.presenter.KuaiKanListPresenter;
 import com.gs.gscartoon.utils.TimeUtil;
+import com.umeng.analytics.MobclickAgent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -153,12 +154,14 @@ public class KuaiKanFragment extends Fragment implements KuaiKanContract.View{
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

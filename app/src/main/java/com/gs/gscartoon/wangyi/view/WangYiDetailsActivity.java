@@ -23,7 +23,6 @@ import com.gs.gscartoon.behavior.CustomTextViewBehavior;
 import com.gs.gscartoon.utils.AppConstants;
 import com.gs.gscartoon.utils.StatusBarUtil;
 import com.gs.gscartoon.utils.StringUtil;
-import com.gs.gscartoon.utils.TimeUtil;
 import com.gs.gscartoon.utils.ToolbarUtil;
 import com.gs.gscartoon.wangyi.WangYiDescriptionContract;
 import com.gs.gscartoon.wangyi.WangYiDetailsContract;
@@ -36,6 +35,7 @@ import com.gs.gscartoon.wangyi.presenter.WangYiDetailsPresenter;
 import com.gs.gscartoon.wangyi.presenter.WangYiSectionPresenter;
 import com.gs.gscartoon.widget.view.MarqueTextView;
 import com.squareup.picasso.Picasso;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -248,7 +248,14 @@ public class WangYiDetailsActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         mPresenter.getDetails(mComicId);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

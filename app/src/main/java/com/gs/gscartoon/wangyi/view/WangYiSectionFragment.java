@@ -20,6 +20,8 @@ import com.gs.gscartoon.wangyi.adapter.WangYiSectionRecyclerAdapter;
 import com.gs.gscartoon.wangyi.bean.WangYiDetailsBean;
 import com.gs.gscartoon.wangyi.bean.WangYiSectionBean;
 import com.gs.gscartoon.wangyi.bean.WangYiSectionBean.DataBean.SectionsBeanX.SectionsBean;
+import com.umeng.analytics.MobclickAgent;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -111,6 +113,7 @@ public class WangYiSectionFragment extends Fragment
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         updateOrder();
         mPresenter.start();
     }
@@ -118,6 +121,7 @@ public class WangYiSectionFragment extends Fragment
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override

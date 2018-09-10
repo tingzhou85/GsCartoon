@@ -12,14 +12,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.gs.gscartoon.kuaikan.bean.KuaiKanListBean.DataBean.ComicsBean;
+
 import com.gs.gscartoon.R;
 import com.gs.gscartoon.kuaikan.KuaiKanListContract;
 import com.gs.gscartoon.kuaikan.adapter.KuaiKanListRecyclerAdapter;
+import com.gs.gscartoon.kuaikan.bean.KuaiKanListBean.DataBean.ComicsBean;
 import com.gs.gscartoon.utils.AppConstants;
 import com.gs.gscartoon.utils.LogUtil;
 import com.gs.gscartoon.widget.view.refresh.JFengRefreshLayout;
 import com.gs.gscartoon.widget.view.refresh.JFengRefreshListener;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -129,12 +131,14 @@ public class KuaiKanListFragment extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onPageStart(TAG);
         mPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        MobclickAgent.onPageEnd(TAG);
     }
 
     @Override
