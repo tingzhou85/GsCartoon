@@ -10,7 +10,6 @@ import android.view.View;
 
 import com.gs.gscartoon.GsApplication;
 import com.gs.gscartoon.R;
-import com.gs.gscartoon.utils.LogUtil;
 
 /**
  * Created by camdora on 18-2-11.
@@ -53,14 +52,14 @@ public class AppBarLayoutOverScrollViewBehavior extends AppBarLayout.Behavior {
         //LogUtil.e(TAG, "onLayoutChild");
         boolean handled = super.onLayoutChild(parent, abl, layoutDirection);
         // 需要在调用过super.onLayoutChild()方法之后获取
-        if (mTargetImageView == null) {
+        if (mTargetImageView == null && GsApplication.getAppContext() != null) {
             String imageTag = GsApplication.getAppContext().getString(R.string.over_scroll_image);
             mTargetImageView = parent.findViewWithTag(imageTag);
             if (mTargetImageView != null) {
                 initialImage(abl);
             }
         }
-        if (mTargetLabelView == null) {
+        if (mTargetLabelView == null && GsApplication.getAppContext() != null) {
             String labelTag = GsApplication.getAppContext().getString(R.string.over_scroll_label);
             mTargetLabelView = parent.findViewWithTag(labelTag);
         }
